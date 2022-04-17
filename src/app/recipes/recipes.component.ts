@@ -1,3 +1,4 @@
+import { RecipeService } from './recipe.service';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { Recipe } from './recipe.model';
 import { Component, OnInit } from '@angular/core';
@@ -6,12 +7,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css'],
+  providers: [RecipeService],
 })
-export class RecipesComponent implements OnInit {
+export class RecipesComponent {
   constructor() {}
-
-  ngOnInit(): void {}
-  setRecipeDetails(rdc: RecipeDetailComponent, data: Recipe) {
-    rdc.recipeDetail = data;
-  }
 }

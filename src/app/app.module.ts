@@ -22,6 +22,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { ShoppinglistService } from './shopping-list/shopping-list.service';
 
 @NgModule({
   declarations: [
@@ -48,8 +50,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTableModule,
     MatDividerModule,
     FormsModule,
+    MatMenuModule,
   ],
-  providers: [],
+  providers: [ShoppinglistService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

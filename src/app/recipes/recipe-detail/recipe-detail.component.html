@@ -2,12 +2,24 @@
   <div class="row">
     <mat-card *ngIf="recipeDetail.name !== ''">
       <mat-card-header>
+        <mat-card-actions align="end">
+          <button mat-button [matMenuTriggerFor]="menu">Manage Recipe</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="sendToShoppingList()">To Shopping List</button>
+          </mat-menu>
+        </mat-card-actions>
         <div mat-card-avatar></div>
         <mat-card-title>{{recipeDetail.name}}</mat-card-title>
         <mat-card-subtitle>{{recipeDetail.description}}</mat-card-subtitle>
       </mat-card-header>
+      Required ingerdients:
+      <ul>
+        <li *ngFor="let i of recipeDetail.ingredients">
+          {{i.name}} - {{i.quantity}}
+        </li>
+      </ul>
       <img mat-card-image src="{{recipeDetail.imagePath}}" alt="{{recipeDetail.name}}">
     </mat-card>
-    <p *ngIf="recipeDetail.name === ''">Please select a Recipe!</p>
+    <p *ngIf=" recipeDetail.name===''">Please select a Recipe!</p>
   </div>
 </div>
