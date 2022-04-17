@@ -20,7 +20,7 @@ export class RecipeService {
     new Recipe(
       'Poori Bhaji',
       'Poori and batata bhaji',
-      'https://lejnaskitchen.com/wp-content/uploads/2020/06/Screenshot_2020-06-08-00-16-40-69-02.jpeg',
+      'assets/images/poori-bhaji.jpg',
       [
         new Ingredient('wheat', 2),
         new Ingredient('oil', 1),
@@ -31,7 +31,7 @@ export class RecipeService {
     new Recipe(
       'Aaloo Paratha',
       'Aaloo Paratha',
-      'https://www.indianhealthyrecipes.com/wp-content/uploads/2020/08/aloo-paratha-recipe.jpg',
+      'assets/images/aloo-paratha.jpg',
       [
         new Ingredient('wheat', 2),
         new Ingredient('oil', 1),
@@ -42,7 +42,7 @@ export class RecipeService {
     new Recipe(
       'Paani Poori',
       'Paani Poori',
-      'https://static.toiimg.com/thumb/61048461.cms?imgsize=1981854&width=800&height=800',
+      'assets/images/paani-poori.webp',
       [
         new Ingredient('white peas', 3),
         new Ingredient('mint leaves', 250),
@@ -53,7 +53,7 @@ export class RecipeService {
     new Recipe(
       'Bhel',
       'Bhel',
-      'https://i2.wp.com/vegecravings.com/wp-content/uploads/2018/06/Bhel-Puri-Recipe-Step-By-Step-Instructions.jpg?fit=1972%2C1874&quality=65&strip=all&ssl=1',
+      'assets/images/bhel-puri.webp',
       [
         new Ingredient('flat rice', 250),
         new Ingredient('shev', 250),
