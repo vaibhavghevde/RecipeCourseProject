@@ -1,9 +1,21 @@
-import { Ingredient } from './../shared/ingredient.model';
-import { EventEmitter } from '@angular/core';
-import { Recipe } from './recipe.model';
+import { Injectable } from '@angular/core';
 
+import { Recipe } from './recipe.model';
+import { Ingredient } from './../shared/ingredient.model';
+
+@Injectable({
+  providedIn: 'root',
+})
 export class RecipeService {
-  selectedRecipe = new EventEmitter<Recipe>();
+  public set setIndex(v: number) {
+    this.selectedRecipeIndex = v;
+  }
+
+  public get getIndex(): number {
+    return this.selectedRecipeIndex;
+  }
+
+  selectedRecipeIndex: number = -1;
   private recipes: Recipe[] = [
     new Recipe(
       'Poori Bhaji',
@@ -52,5 +64,13 @@ export class RecipeService {
 
   getRecipes() {
     return this.recipes.slice();
+  }
+
+  getRecipesByIndex(index: number) {
+    return this.recipes.slice()[index];
+  }
+
+  getRecipeIndex(name: string) {
+    return this.recipes.find((x) => x.name === name);
   }
 }

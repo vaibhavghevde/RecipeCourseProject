@@ -1,11 +1,12 @@
 <div class="cointainer">
   <div class="row">
-    <mat-card *ngIf="recipeDetail.name !== ''">
+    <mat-card>
       <mat-card-header>
         <mat-card-actions align="end">
           <button mat-button [matMenuTriggerFor]="menu">Manage Recipe</button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="sendToShoppingList()">To Shopping List</button>
+            <button mat-menu-item [routerLink]="['edit']">Edit Recipe</button>
           </mat-menu>
         </mat-card-actions>
         <div mat-card-avatar></div>
@@ -20,6 +21,5 @@
       </ul>
       <img mat-card-image src="{{recipeDetail.imagePath}}" alt="{{recipeDetail.name}}">
     </mat-card>
-    <p *ngIf=" recipeDetail.name===''">Please select a Recipe!</p>
   </div>
 </div>

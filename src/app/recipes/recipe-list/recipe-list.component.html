@@ -1,9 +1,10 @@
 <div class="col-md-12">
   <div class="row">
     <div class="col-md-1">
-      <button mat-raised-button color="primary" type="button">New Recipe</button>
+      <button mat-raised-button color="primary" type="button" [routerLink]="['new']">New Recipe</button>
     </div>
   </div>
 </div>
 <hr>
-<app-recipe-item *ngFor="let r of recipes" [recipe]="r"></app-recipe-item>
+<app-recipe-item *ngFor="let r of recipes; let i = index" [recipe]="r" [index]="i" [routerLink]="[i]">
+</app-recipe-item>
