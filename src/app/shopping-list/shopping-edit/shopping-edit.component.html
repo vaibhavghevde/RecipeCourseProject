@@ -1,0 +1,31 @@
+<div class="row ml10 mb20">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" [(ngModel)]="name">
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Quantity</mat-label>
+          <input matInput type="number" [(ngModel)]="quantity">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-1">
+        <button mat-raised-button color="primary" (click)="addIngredient()" type="button">Add</button>
+      </div>
+      <div class="col-md-1">
+        <button mat-raised-button color="warn" type="button">Delete</button>
+      </div>
+      <div class="col-md-1">
+        <button mat-raised-button type="button">Clear</button>
+      </div>
+    </div>
+  </div>
+</div>

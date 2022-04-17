@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-10">
+    <app-shopping-edit (ingredientAdded)="onIngredientAdded($event)"></app-shopping-edit>
+    <mat-divider></mat-divider>
+    <mat-card *ngFor="let r of ingredients" class="itm">
+      <mat-card-header>
+        <mat-card-title>{{r.name}} ({{r.quantity}})</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+  </div>
+</div>

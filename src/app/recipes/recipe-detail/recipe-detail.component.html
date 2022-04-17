@@ -1,0 +1,13 @@
+<div class="cointainer">
+  <div class="row">
+    <mat-card *ngIf="recipeDetail.name !== ''">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>{{recipeDetail.name}}</mat-card-title>
+        <mat-card-subtitle>{{recipeDetail.description}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{recipeDetail.imagePath}}" alt="{{recipeDetail.name}}">
+    </mat-card>
+    <p *ngIf="recipeDetail.name === ''">Please select a Recipe!</p>
+  </div>
+</div>

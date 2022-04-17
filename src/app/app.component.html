@@ -1,0 +1,9 @@
+<app-header (selectMenu)="setMenu($event)"></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-recipes *ngIf="menu==='recipe'"></app-recipes>
+      <app-shopping-list *ngIf="menu==='shoppingList'"></app-shopping-list>
+    </div>
+  </div>
+</div>
