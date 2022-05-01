@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Ingredient } from './../../shared/ingredient.model';
@@ -10,22 +11,50 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./shopping-edit.component.css'],
 })
 export class ShoppingEditComponent implements OnInit {
+  subscription: Subscription = new Subscription();
+  editMode = false;
+  editedIndex: number = -1;
   @ViewChild('f1') myForm!: NgForm;
-  name = '';
-  quantity = 0;
-
+  ingredient!: Ingredient;
   constructor(private shoppinglistService: ShoppinglistService) {}
 
   ngOnInit(): void {
-  }
-
-  addIngredient() {
-    this.shoppinglistService.setIngerdients(
-      new Ingredient(this.myForm.value.name, this.myForm.value.quantity)
+    this.subscription = this.shoppinglistService.startedEditing.subscribe(
+      (index) => {
+        this.editMode = true;
+        this.editedIndex = index;
+        this.ingredient = this.shoppinglistService.getIngredient(index);
+        this.myForm.setValue({
+          name: this.ingredient.name,
+          quantity: this.ingredient.quantity,
+        });
+      }
     );
   }
 
-  clearForm(){
+  addIngredient() {
+    if (!this.editMode) {
+      this.shoppinglistService.setIngerdients(
+        new Ingredient(this.myForm.value.name, this.myForm.value.quantity)
+      );
+    } else {
+      this.shoppinglistService.editIngredient(
+        new Ingredient(this.myForm.value.name, this.myForm.value.quantity),
+        this.editedIndex
+      );
+    }
+    this.clearForm();
+  }
+
+  onDelete() {
+    this.shoppinglistService.deleteIngredient(this.editedIndex);
+    this.clearForm();
+  }
+
+  clearForm() {
+    this.editMode = false;
+    this.editedIndex = -1;
     this.myForm.reset();
+    console.log(this.myForm);
   }
 }

@@ -5,14 +5,14 @@
         <div class="col-md-3">
           <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
-            <input matInput ngModel type="text" required  name="name" #name1="ngModel">
+            <input matInput ngModel type="text" required name="name" #name1="ngModel">
             <mat-hint *ngIf="!name1.valid && name1.touched" class="error-hint">Please enter a product name</mat-hint>
           </mat-form-field>
         </div>
         <div class="col-md-3">
           <mat-form-field appearance="fill">
             <mat-label>Quantity</mat-label>
-            <input matInput type="number" required name="quantity" #q1="ngModel" ngModel>
+            <input matInput type="number" required name="quantity" #q1="ngModel" ngModel pattern="">
             <mat-hint *ngIf="!q1.valid && q1.touched" class="error-hint">Please enter quantity</mat-hint>
           </mat-form-field>
         </div>
@@ -20,14 +20,15 @@
     </div>
     <div class="col-md-12">
       <div class="row">
-        <div class="col-md-1">
-          <button mat-raised-button color="primary" type="submit" [disabled]="!f1.valid">Add</button>
+        <div class="col-md-1 mr5">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!f1.valid">{{editMode ?'Update':
+            'Add'}}</button>
         </div>
-        <!-- <div class="col-md-1">
-          <button mat-raised-button color="warn" type="button">Delete</button>
-        </div> -->
+        <div class="col-md-1 mr5" *ngIf="editMode">
+          <button mat-raised-button color="warn" type="button" (click)="onDelete()">Delete</button>
+        </div>
         <div class="col-md-1">
-          <button mat-raised-button type="button" (click)="clearForm()">Clear</button>
+          <button mat-raised-button color="accent" type="button" (click)="clearForm()">Clear</button>
         </div>
       </div>
     </div>

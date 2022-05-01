@@ -1,2 +1,11 @@
 {
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single",
+    "prettier.quoteProps": "preserve",
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    "eslint.validate": [
+
+    ],
+    "eslint.runtime": ""
 }

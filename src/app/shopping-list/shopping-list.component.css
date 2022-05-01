@@ -8,5 +8,10 @@
 }
 
 .error-hint {
-  color: #f44336;
+  color: #cc3333;
+}
+
+mat-card:hover {
+  background-color: rgb(245, 245, 245);
+  cursor: pointer;
 }

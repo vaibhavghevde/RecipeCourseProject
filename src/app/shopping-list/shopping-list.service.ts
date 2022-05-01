@@ -8,6 +8,7 @@ import { Ingredient } from '../shared/ingredient.model';
 })
 export class ShoppinglistService {
   ingredientAdded = new Subject<Ingredient[]>();
+  startedEditing = new Subject<number>();
   private ingredients: Ingredient[] = [
     new Ingredient('Apples', 5),
     new Ingredient('Tomatoes', 10),
@@ -17,15 +18,23 @@ export class ShoppinglistService {
     return this.ingredients.slice();
   }
 
+  getIngredient(i: number) {
+    return this.ingredients[i];
+  }
+
   setIngerdients(data: Ingredient) {
-    const obj = this.ingredients.find((e) => e.name === data.name);
-    if (obj === undefined) {
-      this.ingredients.push(data);
-    } else {
-      this.ingredients[
-        this.ingredients.findIndex((e) => e.name === data.name)
-      ].quantity += data.quantity;
-    }
+    this.ingredients.push(data);
+    this.ingredientAdded.next(this.ingredients.slice());
+  }
+
+  editIngredient(data: Ingredient, i: number) {
+    this.ingredients[i].name = data.name;
+    this.ingredients[i].quantity = data.quantity;
+    this.ingredientAdded.next(this.ingredients.slice());
+  }
+
+  deleteIngredient(idx: number) {
+    this.ingredients.splice(idx, 1);
     this.ingredientAdded.next(this.ingredients.slice());
   }
 }

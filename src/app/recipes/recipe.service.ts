@@ -55,7 +55,7 @@ export class RecipeService {
       'Bhel',
       'assets/images/bhel-puri.webp',
       [
-        new Ingredient('flat rice', 250),
+        new Ingredient('puffed rice', 250),
         new Ingredient('shev', 250),
         new Ingredient('flat poori', 2),
       ]
