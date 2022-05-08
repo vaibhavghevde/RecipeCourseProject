@@ -1,5 +1,6 @@
+import { Recipe } from './../recipe.model';
 import { RecipeService } from './../recipe.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -19,7 +20,8 @@ export class RecipeEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +48,10 @@ export class RecipeEditComponent implements OnInit {
           recipeIngredients.push(
             new FormGroup({
               name: new FormControl(ingredient.name, Validators.required),
-              quantity: new FormControl(ingredient.quantity, [Validators.required]),
+              quantity: new FormControl(ingredient.quantity, [
+                Validators.required,
+                Validators.pattern(/^[1-9]+[0-9]*$/),
+              ]),
             })
           );
         }
@@ -62,15 +67,42 @@ export class RecipeEditComponent implements OnInit {
   }
 
   OnSubmit() {
-    console.log(this.recipeForm);
+    const newRecipe = new Recipe(
+      this.recipeForm.value['recipeName'],
+      this.recipeForm.value['description'],
+      this.recipeForm.value['imageUrl'],
+      this.recipeForm.value['ingredients']
+    );
+    if (this.editMode) {
+      this.recipeService.updateRecipe(this.id, newRecipe);
+    } else {
+      this.recipeService.addRecipe(newRecipe);
+    }
+
+    this.onCancel();
   }
 
   onAddIngerdient() {
     (<FormArray>this.recipeForm.get('ingredients')).push(
       new FormGroup({
-        name: new FormControl(),
-        quantity: new FormControl(),
+        name: new FormControl(null, Validators.required),
+        quantity: new FormControl(null, [
+          Validators.required,
+          Validators.pattern(/^[1-9]+[0-9]*$/),
+        ]),
       })
     );
+  }
+
+  onDeleteIngerdient(i: number) {
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(i);
+  }
+
+  onCancel() {
+    if (this.editMode) {
+      this.router.navigateByUrl('/recipes/' + this.id);
+    } else {
+      this.router.navigateByUrl('/recipes');
+    }
   }
 }

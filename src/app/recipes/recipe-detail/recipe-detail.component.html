@@ -7,6 +7,7 @@
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="sendToShoppingList()">To Shopping List</button>
             <button mat-menu-item [routerLink]="['edit']">Edit Recipe</button>
+            <button mat-menu-item (click)="onDeleteRecipe()">Delete Recipe</button>
           </mat-menu>
         </mat-card-actions>
         <div mat-card-avatar></div>

@@ -1,7 +1,7 @@
 {
     "javascript.preferences.quoteStyle": "single",
     "typescript.preferences.quoteStyle": "single",
-    "prettier.quoteProps": "preserve",
+    "prettier.quoteProps": "as-needed",
     "prettier.singleQuote": true,
     "prettier.jsxSingleQuote": true,
     "eslint.validate": [

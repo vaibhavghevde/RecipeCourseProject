@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import { Recipe } from './recipe.model';
@@ -7,6 +8,8 @@ import { Ingredient } from './../shared/ingredient.model';
   providedIn: 'root',
 })
 export class RecipeService {
+  recipeChanged = new Subject<Recipe[]>();
+
   public set setIndex(v: number) {
     this.selectedRecipeIndex = v;
   }
@@ -39,27 +42,17 @@ export class RecipeService {
         new Ingredient('masala', 10),
       ]
     ),
-    new Recipe(
-      'Paani Poori',
-      'Paani Poori',
-      'assets/images/paani-poori.webp',
-      [
-        new Ingredient('white peas', 3),
-        new Ingredient('mint leaves', 250),
-        new Ingredient('dates', 50),
-        new Ingredient('poori packet', 2),
-      ]
-    ),
-    new Recipe(
-      'Bhel',
-      'Bhel',
-      'assets/images/bhel-puri.webp',
-      [
-        new Ingredient('puffed rice', 250),
-        new Ingredient('shev', 250),
-        new Ingredient('flat poori', 2),
-      ]
-    ),
+    new Recipe('Paani Poori', 'Paani Poori', 'assets/images/paani-poori.webp', [
+      new Ingredient('white peas', 3),
+      new Ingredient('mint leaves', 250),
+      new Ingredient('dates', 50),
+      new Ingredient('poori packet', 2),
+    ]),
+    new Recipe('Bhel', 'Bhel', 'assets/images/bhel-puri.webp', [
+      new Ingredient('puffed rice', 250),
+      new Ingredient('shev', 250),
+      new Ingredient('flat poori', 2),
+    ]),
   ];
 
   getRecipes() {
@@ -72,5 +65,19 @@ export class RecipeService {
 
   getRecipeIndex(name: string) {
     return this.recipes.find((x) => x.name === name);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipeChanged.next(this.recipes.slice());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.recipeChanged.next(this.recipes.slice());
+  }
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.recipeChanged.next(this.recipes.slice());
   }
 }
