@@ -10,3 +10,7 @@ button[mat-flat-button].active {
   background-color: #663bb7;
   color: white;
 }
+
+.example-spacer {
+  flex: 1 1 auto;
+}

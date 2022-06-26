@@ -8,4 +8,10 @@
   <button mat-flat-button routerLinkActive="active" [routerLink]="['/shopping-list']">
     Shopping List
   </button>
+  <span class="example-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu" class="">Manage Recipe</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onSaveData()" type="button">Save Data</button>
+    <button mat-menu-item (click)="onFetchData()" type="button">Fetch Data</button>
+  </mat-menu>
 </mat-toolbar>

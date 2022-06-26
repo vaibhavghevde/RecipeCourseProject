@@ -8,6 +8,8 @@ import { Ingredient } from './../shared/ingredient.model';
   providedIn: 'root',
 })
 export class RecipeService {
+  constructor() {}
+
   recipeChanged = new Subject<Recipe[]>();
 
   public set setIndex(v: number) {
@@ -19,41 +21,47 @@ export class RecipeService {
   }
 
   selectedRecipeIndex: number = -1;
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Poori Bhaji',
-      'Poori and batata bhaji',
-      'assets/images/poori-bhaji.jpg',
-      [
-        new Ingredient('wheat', 2),
-        new Ingredient('oil', 1),
-        new Ingredient('potatoes', 5),
-        new Ingredient('masala', 20),
-      ]
-    ),
-    new Recipe(
-      'Aaloo Paratha',
-      'Aaloo Paratha',
-      'assets/images/aloo-paratha.jpg',
-      [
-        new Ingredient('wheat', 2),
-        new Ingredient('oil', 1),
-        new Ingredient('potatoes', 5),
-        new Ingredient('masala', 10),
-      ]
-    ),
-    new Recipe('Paani Poori', 'Paani Poori', 'assets/images/paani-poori.webp', [
-      new Ingredient('white peas', 3),
-      new Ingredient('mint leaves', 250),
-      new Ingredient('dates', 50),
-      new Ingredient('poori packet', 2),
-    ]),
-    new Recipe('Bhel', 'Bhel', 'assets/images/bhel-puri.webp', [
-      new Ingredient('puffed rice', 250),
-      new Ingredient('shev', 250),
-      new Ingredient('flat poori', 2),
-    ]),
-  ];
+  private recipes: Recipe[] = [];
+  // [
+  //   new Recipe(
+  //     'Poori Bhaji',
+  //     'Poori and batata bhaji',
+  //     'assets/images/poori-bhaji.jpg',
+  //     [
+  //       new Ingredient('wheat', 2),
+  //       new Ingredient('oil', 1),
+  //       new Ingredient('potatoes', 5),
+  //       new Ingredient('masala', 20),
+  //     ]
+  //   ),
+  //   new Recipe(
+  //     'Aaloo Paratha',
+  //     'Aaloo Paratha',
+  //     'assets/images/aloo-paratha.jpg',
+  //     [
+  //       new Ingredient('wheat', 2),
+  //       new Ingredient('oil', 1),
+  //       new Ingredient('potatoes', 5),
+  //       new Ingredient('masala', 10),
+  //     ]
+  //   ),
+  //   new Recipe('Paani Poori', 'Paani Poori', 'assets/images/paani-poori.webp', [
+  //     new Ingredient('white peas', 3),
+  //     new Ingredient('mint leaves', 250),
+  //     new Ingredient('dates', 50),
+  //     new Ingredient('poori packet', 2),
+  //   ]),
+  //   new Recipe('Bhel', 'Bhel', 'assets/images/bhel-puri.webp', [
+  //     new Ingredient('puffed rice', 250),
+  //     new Ingredient('shev', 250),
+  //     new Ingredient('flat poori', 2),
+  //   ]),
+  // ];
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipeChanged.next(this.recipes.slice());
+  }
 
   getRecipes() {
     return this.recipes.slice();
