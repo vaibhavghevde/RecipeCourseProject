@@ -1,3 +1,4 @@
+import { AuthComponent } from './auth/auth/auth.component';
 import { RecipesResolverSercvice } from './recipes/recipes-resolver.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -11,6 +12,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 const appRoutes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
   { path: 'shopping-list', component: ShoppingListComponent },
+  { path: 'auth', component: AuthComponent },
   {
     path: 'recipes',
     component: RecipesComponent,

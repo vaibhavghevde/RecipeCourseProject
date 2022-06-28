@@ -1,0 +1,32 @@
+<div class="row mt10">
+  <div class="col-md-12">
+    <form #authForm="ngForm" (ngSubmit)="OnSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w100pc">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" ngModel required email name="email" #email="ngModel">
+            <mat-hint *ngIf="!email.valid && email.touched" class="error-hint">Please enter email</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w100pc">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" ngModel required minlength="6" name="password" #password="ngModel">
+            <mat-hint *ngIf="!password.valid && password.touched" class="error-hint">Please enter password</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button mat-raised-button type="submit" color="primary" [disabled]="authForm.invalid">{{isLoginMode ? 'Login'
+            : 'Sign Up'}}</button> |
+          <button mat-raised-button type="button" color="accent" class="ml10" (click)="onSwitchMode()">Switch to
+            {{!isLoginMode ? 'Login' : 'Sign Up'}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
