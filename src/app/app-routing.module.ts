@@ -1,4 +1,4 @@
-import { AuthComponent } from './auth/auth/auth.component';
+import { AuthComponent } from './auth/auth.component';
 import { RecipesResolverSercvice } from './recipes/recipes-resolver.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';

@@ -1,11 +1,14 @@
 <div class="row mt10">
   <div class="col-md-12">
-    <form #authForm="ngForm" (ngSubmit)="OnSubmit()">
+    <div class="alert alert-danger" *ngIf="error">
+      <p>{{ error }}</p>
+    </div>
+    <form #authForm="ngForm" (ngSubmit)="OnSubmit(authForm)" *ngIf="!isloading">
       <div class="row">
         <div class="col-md-12">
           <mat-form-field appearance="outline" class="w100pc">
             <mat-label>Email</mat-label>
-            <input matInput type="email" ngModel required email name="email" #email="ngModel">
+            <input matInput type="email" ngModel required email name="email" #email="ngModel" autocomplete="false">
             <mat-hint *ngIf="!email.valid && email.touched" class="error-hint">Please enter email</mat-hint>
           </mat-form-field>
         </div>
@@ -14,7 +17,8 @@
         <div class="col-md-12">
           <mat-form-field appearance="outline" class="w100pc">
             <mat-label>Password</mat-label>
-            <input matInput type="password" ngModel required minlength="6" name="password" #password="ngModel">
+            <input matInput type="password" ngModel required minlength="6" name="password" #password="ngModel"
+              autocomplete="false">
             <mat-hint *ngIf="!password.valid && password.touched" class="error-hint">Please enter password</mat-hint>
           </mat-form-field>
         </div>
@@ -28,5 +32,9 @@
         </div>
       </div>
     </form>
+    <div *ngIf="isloading" class="center">
+      <mat-progress-spinner color="primary" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
   </div>
 </div>

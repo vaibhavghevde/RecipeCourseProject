@@ -1,19 +1,23 @@
 <mat-toolbar>
   <span>Recipe Book</span>
-  <span class="pl10"></span>
-  <button mat-flat-button routerLinkActive="active" [routerLink]="['/recipes']">
+  <span class="pl10" *ngIf="isAuthenticated"></span>
+  <button mat-flat-button routerLinkActive="active" [routerLink]="['/recipes']" *ngIf="isAuthenticated">
     Recipe
   </button>
   <span class="pl10"></span>
   <button mat-flat-button routerLinkActive="active" [routerLink]="['/shopping-list']">
     Shopping List
   </button>
-  <span class="pl10"></span>
-  <button mat-flat-button routerLinkActive="active" [routerLink]="['/auth']">
+  <span class="pl10" *ngIf="!isAuthenticated"></span>
+  <button mat-flat-button routerLinkActive="active" [routerLink]="['/auth']" *ngIf="!isAuthenticated">
     Log In
   </button>
   <span class="example-spacer"></span>
-  <button mat-button [matMenuTriggerFor]="menu" class="">Manage Recipe</button>
+  <button mat-flat-button *ngIf="isAuthenticated">
+    Logout
+  </button>
+  <span class="pl10" *ngIf="isAuthenticated"></span>
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="isAuthenticated">Manage Recipe</button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="onSaveData()" type="button">Save Data</button>
     <button mat-menu-item (click)="onFetchData()" type="button">Fetch Data</button>

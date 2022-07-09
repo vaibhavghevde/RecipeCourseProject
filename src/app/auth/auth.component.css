@@ -1,0 +1,12 @@
+.w100pc {
+  width: 100%;
+}
+
+.error-hint {
+  color: #f44336;
+}
+
+.center {
+  text-align: center;
+  text-align: -webkit-center;
+}

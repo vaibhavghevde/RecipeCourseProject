@@ -25,7 +25,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { AuthComponent } from './auth/auth/auth.component';
+import { AuthComponent } from './auth/auth.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { AuthComponent } from './auth/auth/auth.component';
     ReactiveFormsModule,
     MatMenuModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
   ],
   bootstrap: [AppComponent],
