@@ -13,7 +13,7 @@
     Log In
   </button>
   <span class="example-spacer"></span>
-  <button mat-flat-button *ngIf="isAuthenticated">
+  <button mat-flat-button *ngIf="isAuthenticated" (click)="onLogout()">
     Logout
   </button>
   <span class="pl10" *ngIf="isAuthenticated"></span>
