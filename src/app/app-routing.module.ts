@@ -1,3 +1,4 @@
+import { AuthGaurdService } from './auth/auth.gaurd';
 import { AuthComponent } from './auth/auth.component';
 import { RecipesResolverSercvice } from './recipes/recipes-resolver.service';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,7 @@ const appRoutes = [
   {
     path: 'recipes',
     component: RecipesComponent,
+    canActivate: [AuthGaurdService],
     children: [
       { path: '', component: RecipeStartComponent },
       { path: 'new', component: RecipeEditComponent },

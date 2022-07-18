@@ -28,6 +28,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { AuthComponent } from './auth/auth.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     RecipeEditComponent,
     RecipeStartComponent,
     AuthComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
