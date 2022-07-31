@@ -1,23 +1,37 @@
+import { PlaceholderDirective } from './../shared/placeholder.directive';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 
 import { AuthService, AuthResponseData } from './auth.service';
+import { AlertComponent } from './../shared/alert/alert.component';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnDestroy {
   isLoginMode = true;
   isloading = false;
   error: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  @ViewChild(PlaceholderDirective, { static: false })
+  alertHost: PlaceholderDirective;
 
-  ngOnInit(): void {}
+  private closeSub: Subscription;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {}
 
   OnSubmit(form: NgForm) {
     if (!form.valid) {
@@ -46,6 +60,7 @@ export class AuthComponent implements OnInit {
       (errorMessage) => {
         console.log(errorMessage);
         this.error = errorMessage;
+        this.showErrorAlert(errorMessage);
         this.isloading = false;
       }
     );
@@ -58,5 +73,26 @@ export class AuthComponent implements OnInit {
 
   onHandleError() {
     this.error = null;
+  }
+
+  private showErrorAlert(message: string) {
+    const alertCmpfactory =
+      this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
+
+    const hostViewContRef = this.alertHost.viewContRef;
+    hostViewContRef.clear();
+
+    const componentRef = hostViewContRef.createComponent(alertCmpfactory);
+    componentRef.instance.message = message;
+    this.closeSub = componentRef.instance.close.subscribe(() => {
+      this.closeSub.unsubscribe();
+      hostViewContRef.clear();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.closeSub) {
+      this.closeSub.unsubscribe();
+    }
   }
 }

@@ -4,6 +4,7 @@
       <p>{{ error }}</p>
     </div> -->
     <!-- <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert> -->
+    <ng-template appPlaceHolder></ng-template>
     <form #authForm="ngForm" (ngSubmit)="OnSubmit(authForm)" *ngIf="!isloading">
       <div class="row">
         <div class="col-md-12">
