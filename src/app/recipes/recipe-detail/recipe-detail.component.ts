@@ -29,9 +29,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   sendToShoppingList() {
-    this.recipeDetail.ingredients.forEach((e) => {
-      this.slService.setIngerdients(e);
-    });
+    this.slService.setIngerdients(this.recipeDetail.ingredients);
   }
 
   onDeleteRecipe() {
